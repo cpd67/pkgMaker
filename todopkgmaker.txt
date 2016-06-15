@@ -34,4 +34,4 @@ TO-DO pkgMaker
 	  and re-upload.
 * Still have to make a cleanup script that deletes all of the old text files.
 
-* Change naming from "*FirstTime.txt" to "*FirstUse.txt".
+* Change naming from "*FirstTime.txt" to "*FirstUse.txt" (and references to it in versChecker.sh).
