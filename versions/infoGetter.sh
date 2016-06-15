@@ -57,6 +57,23 @@ cd versioner/
 
 #Compile and link it, then execute it
 g++ -c version.cpp && g++ version.o -o version
+
+#http://ubuntuforums.org/showthread.php?t=922603
+#http://stackoverflow.com/questions/18161234/integer-comparison-in-bash-using-if-else
+#https://www.shell-tips.com/2006/11/04/using-bash-wildcards/
+#Determine if the user made a mistake with the version number
+#Or if the version number needs to be expanded
+if [[ $oldVersNum == ? ]] && (($minorNum == 1)) || [[ $oldVersNum == ? ]] # 1
+then
+	oldVersNum=$oldVersNum".0"
+elif [[ $oldVersNum == *. ]] && (($minorNum == 1)) || [[ $oldVersNum == *. ]] # 1.
+then
+	oldVersNum=$oldVersNum"0"
+elif [[ $oldVersNum == *.*. ]] && (($patchNum == 1)) || [[ $oldVersNum == *.*. ]] # 1.0
+then
+	oldVersNum=$oldVersNum"0"
+fi
+
 results=$(./version $majorNum $minorNum $patchNum $oldVersNum)
 
 cd ../

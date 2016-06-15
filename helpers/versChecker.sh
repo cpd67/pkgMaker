@@ -66,6 +66,25 @@ do
 			#Get the version number from the text file
 			versNum=$(cat "$lib"Version.txt)
 			
+			#http://ubuntuforums.org/showthread.php?t=922603
+			#https://www.shell-tips.com/2006/11/04/using-bash-wildcards/
+			#Check if the user made a mistake in putting the version number
+			#Or if something went wrong when it was put in
+			if [[ $versNum == ? ]] 
+			then	
+				#Fix and update
+				versNum=$versNum".0"
+				echo "$versNum" > "$lib"Version.txt	
+			elif [[ $versNum == *. ]]
+			then
+				versNum=$versNum"0"
+				echo "$versNum" > "$lib"Version.txt
+			elif [[ $oldVersNum == *.*. ]]
+			then
+				versNum=$versNum"0"
+				echo "$versNum" > "$lib"Version.txt
+			fi
+
 			echo "Found. $lib version number is: $versNum."
 
 			cd ../helpers/

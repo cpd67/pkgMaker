@@ -10,9 +10,8 @@ while read -r lib
 do
 	cd imp/
 	
+	#See if it's the first time use case...
 	firstTime=$(cat "$lib"FirstTime.txt)
-	
-	#Check if it's the first time use case...
 	if [ $firstTime = "yes" ]
 	then
 		#Yes.
@@ -78,7 +77,7 @@ do
 					echo "Debian folder not found!"
 					cd ../	
 				fi
-			
+			#Move the old directory into the oldBuilds directory
 			mv "$dirName" oldBuilds/
 			count=1
 			#Do we have to make the new directory?

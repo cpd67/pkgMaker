@@ -3,14 +3,11 @@ TO-DO pkgMaker
 
 * Still have to do error-handling for the infoGetter.
 
-* Still have to check if the version number is 1.0 and the user makes a bug fix (because then it would be 1.0.1)
-	- Abort when the length of the char * array is 2, 4, or greater than 5 (bad version number).
-	- If the length is 1 and a minor change has been made, tack on .1 (1.1).
-	- If the length is 3 and a bug fix has been made, tack on a .1 (1.0.1).
-	- This will be before the incrementing part. 
-	- Booleans will determine whether a major or minor change has occured, as well as a bug fix (to prevent incrementing by 2). 
+* Still have to check if the version number is 1.0 and the user makes a bug fix (because then it would be 1.0.1) (DONE)
+	+ FIXED. 
+	+ I checked in the infoGetter.sh and versChecker.sh scripts using regular expressions.
 
-* Still have to modify dirMaker.sh.
+* Still have to modify dirMaker.sh. (DONE)
 	+ What happens when the user just runs the pkgMaker.sh script without having the tsgl and glfw folders made? (Clean workspace problem).
 		- That will mess up the version getting stage and directory maker stage. 
 		- The old version number will be the new version number at that point.
@@ -21,6 +18,7 @@ TO-DO pkgMaker
 			* If the user put the oldVersion.txt file while having a clean workspace, 
 			  the check will catch that, clean up (remove the oldVersion.txt file), and scold the user.
 		- dirMaker.sh will check imp/ to see if packages have been made. versChecker.sh will put a file that tells dirMaker.sh whether or not that is the case.
+	+ FIXED.
  
 * Still have to do copyer.sh and debHandler.sh scripts.
 
@@ -34,3 +32,6 @@ TO-DO pkgMaker
 	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
 	+ If you only have to change stuff inside of the debian folder, you DO NOT need pkgManager. You simply have to make your changes, update the deb number,
 	  and re-upload.
+* Still have to make a cleanup script that deletes all of the old text files.
+
+* Change naming from "*FirstTime.txt" to "*FirstUse.txt".
