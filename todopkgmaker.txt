@@ -1,0 +1,36 @@
+TO-DO pkgMaker
+---------------
+
+* Still have to do error-handling for the infoGetter.
+
+* Still have to check if the version number is 1.0 and the user makes a bug fix (because then it would be 1.0.1)
+	- Abort when the length of the char * array is 2, 4, or greater than 5 (bad version number).
+	- If the length is 1 and a minor change has been made, tack on .1 (1.1).
+	- If the length is 3 and a bug fix has been made, tack on a .1 (1.0.1).
+	- This will be before the incrementing part. 
+	- Booleans will determine whether a major or minor change has occured, as well as a bug fix (to prevent incrementing by 2). 
+
+* Still have to modify dirMaker.sh.
+	+ What happens when the user just runs the pkgMaker.sh script without having the tsgl and glfw folders made? (Clean workspace problem).
+		- That will mess up the version getting stage and directory maker stage. 
+		- The old version number will be the new version number at that point.
+		- I could have a $libOldVersion.txt file, which contains the old version number.
+		- That could be in a special directory that the version getter checks...
+		- if oldVersion.txt exists, then we must not have a clean workspace. The directory MUST exist.
+			* Have a check that makes sure (and scolds the user if they don't have it).
+			* If the user put the oldVersion.txt file while having a clean workspace, 
+			  the check will catch that, clean up (remove the oldVersion.txt file), and scold the user.
+		- dirMaker.sh will check imp/ to see if packages have been made. versChecker.sh will put a file that tells dirMaker.sh whether or not that is the case.
+ 
+* Still have to do copyer.sh and debHandler.sh scripts.
+
+* Still have to do error-handling overall.
+	+ What happens when the user decides to run the pkgMaker.sh script somewhere else (nowhere near the helpers folder)?
+	+ What happens when the user mucks up the directories and scatters them all around?
+	+ What happens when a file does not exist?
+
+* Things to keep in mind:
+	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).
+	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
+	+ If you only have to change stuff inside of the debian folder, you DO NOT need pkgManager. You simply have to make your changes, update the deb number,
+	  and re-upload.
