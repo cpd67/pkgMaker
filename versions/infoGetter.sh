@@ -55,9 +55,6 @@ fi
 #Go into the versioner program
 cd versioner/
 
-#Compile and link it, then execute it
-g++ -c version.cpp && g++ version.o -o version
-
 #http://ubuntuforums.org/showthread.php?t=922603
 #http://stackoverflow.com/questions/18161234/integer-comparison-in-bash-using-if-else
 #https://www.shell-tips.com/2006/11/04/using-bash-wildcards/
@@ -74,6 +71,12 @@ then
 	oldVersNum=$oldVersNum"0"
 fi
 
+#http://askubuntu.com/questions/601227/can-i-call-a-cpp-program-in-bash
+#Compile and link it
+g++ -c version.cpp && g++ version.o -o version
+
+#http://stackoverflow.com/questions/21197207/returning-values-from-a-c-program-into-a-bash-script
+#Store the printed value after execution in a variable
 results=$(./version $majorNum $minorNum $patchNum $oldVersNum)
 
 cd ../
@@ -82,8 +85,7 @@ cd ../
 echo "$results" > newVersNum.txt
 
 
-#http://askubuntu.com/questions/601227/can-i-call-a-cpp-program-in-bash
-#http://stackoverflow.com/questions/21197207/returning-values-from-a-c-program-into-a-bash-script
+
 #Compile and execute the versioner program,
 #Capturing the output
 #g++ -c version.cpp && g++ version.o -o version
