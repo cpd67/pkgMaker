@@ -84,11 +84,5 @@ cd ../
 #Put the results in a text file for next stage...
 echo "$results" > newVersNum.txt
 
-
-
-#Compile and execute the versioner program,
-#Capturing the output
-#g++ -c version.cpp && g++ version.o -o version
-#newVersNum=$(./version $oldVersNum)
-
+#End information retrieval.
 
