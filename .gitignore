@@ -4,3 +4,5 @@
 #Ignore object files
 *.o
 
+#Ignore the executable for the versioner program
+versions/versioner/version
