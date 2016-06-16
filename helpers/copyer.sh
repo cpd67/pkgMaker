@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo "Hey there, i'm your copyer!"
+echo "Copying over files..."
+sleep 1
 
 #Iterate through the list of libraries
 while read -r lib 
@@ -28,7 +29,7 @@ do
 			sleep 1
 			
 			#http://stackoverflow.com/questions/2871181/bash-string-replacing-some-chars-with-another
-			#Replace the - with _ in the directory name
+			#Replace the - with _ in the directory name (naming conventions for upstream tarballs)
 			newDir=$(echo "$dirName" | tr - _)
 				
 			#Make the upstream tarball

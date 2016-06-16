@@ -11,8 +11,12 @@ TO-DO pkgMaker
 	+ What happens when a file does not exist?
 
 * Still have to add the two loops for scripts. (lib -> distro).
-	+ Three for copyer.sh. (lib -> distro -> $lib-$newVersNum).
-	+ The distros loop in dirMaker.sh will create the distro specific directories (lib/distroName).
+	+ Scripts to do it for:
+		- versChecker.sh (COMPLETE)
+		- dirMaker.sh
+		- copyer.sh (three; lib -> distro -> $lib-$newVersNum)
+		- debHandler.sh
+	+ The distro loop in dirMaker.sh will create the distro specific directories (lib/distroName).
 		- Those contain the package directories.
 		- You will have to update the pathes in each file that goes into ~/testBed.
 			
@@ -24,6 +28,13 @@ TO-DO pkgMaker
 	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
 	+ If you only have to change stuff inside of the debian folder, you DO NOT need pkgManager. You simply have to make your changes, update the deb number,
 	  and re-upload.
+
+--------------------------
+| Possible optimizations |
+--------------------------
+
+* Replace loops with recursion.
+* Use functions instead of files.
 
 ------------------
 | Finished items |

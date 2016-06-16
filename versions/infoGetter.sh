@@ -5,6 +5,9 @@ majorNum=0
 minorNum=0
 patchNum=0
 
+#Check if the user has said 'no' to anything
+noCount=0
+
 #Get the old version number
 oldVersNum=$1
 
@@ -20,8 +23,10 @@ then
 elif [ $userInput = "n" -o $userInput = "no" ]
 then
 	echo "No major changes have been made."
+	noCount=$noCount+1
 else 
 	echo "I didn't catch that."
+	noCount=$noCount+1
 fi
  
 #Ask for minor changes
@@ -34,8 +39,10 @@ then
 elif [ $userInput = "n" -o $userInput = "no" ]
 then
 	echo "No minor changes have been made."
+	noCount=$noCount+1
 else 
 	echo "I didn't catch that."
+	noCount=$noCount+1
 fi
 
 #Ask for bug fixes
@@ -48,8 +55,10 @@ then
 elif [ $userInput = "n" -o $userInput = "no" ]
 then
 	echo "No bug fixes have been made."
+	noCount=$noCount+1
 else 
 	echo "I didn't catch that."
+	noCount=$noCount+1
 fi
 
 #Go into the versioner program
@@ -66,23 +75,31 @@ then
 elif [[ $oldVersNum == *. ]] && (($minorNum == 1)) || [[ $oldVersNum == *. ]] # 1.
 then
 	oldVersNum=$oldVersNum"0"
-elif [[ $oldVersNum == *.*. ]] && (($patchNum == 1)) || [[ $oldVersNum == *.*. ]] # 1.0
+elif [[ $oldVersNum == *.*. ]] && (($patchNum == 1)) || [[ $oldVersNum == *.*. ]] # 1.0.
 then
 	oldVersNum=$oldVersNum"0"
 fi
 
-#http://askubuntu.com/questions/601227/can-i-call-a-cpp-program-in-bash
-#Compile and link it
-g++ -c version.cpp && g++ version.o -o version
+#If absolutely no changes have been made, we don't need to make a new package.
+#OR, if a user puts invalid input, move onto the next library. (FOR NOW)
+#(Be sure to tell the user that in the instructions!)
+if [ $noCount == 3 ]
+then
+	cd ../
+	echo "NEXT" > newVersNum.txt
+else
+	#http://askubuntu.com/questions/601227/can-i-call-a-cpp-program-in-bash
+	#Compile and link the versioner program
+	g++ -c version.cpp && g++ version.o -o version
 
-#http://stackoverflow.com/questions/21197207/returning-values-from-a-c-program-into-a-bash-script
-#Store the printed value after execution in a variable
-results=$(./version $majorNum $minorNum $patchNum $oldVersNum)
-
-cd ../
-
-#Put the results in a text file for next stage...
-echo "$results" > newVersNum.txt
-
+	#http://stackoverflow.com/questions/21197207/returning-values-from-a-c-program-into-a-bash-script
+	#Store the printed value after execution in a variable
+	results=$(./version $majorNum $minorNum $patchNum $oldVersNum)
+	cd ../
+	
+	#Put the results in a text file for next stage...
+	echo "$results" > newVersNum.txt
+fi
+	
 #End information retrieval.
 

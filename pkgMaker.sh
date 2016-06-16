@@ -16,22 +16,65 @@ then
 else
 	#No. First time being used.
 	echo "Done. Making preparations for first time package making..."
+	sleep 1
+
 	#Make the important directory for the version checking and directory making stages.
-	mkdir -p imp	
-	echo "Finished."
+	mkdir -p imp
+	
+	#Packaging prelims: creating directories for each distro inside of each lib directory.
+	while read -r lib
+	do
+		#Put the lib directories inside of the imp/, versions/, && packages/ directories
+		cd imp/
+		mkdir -p $lib
+	
+		cd ../../versions/	
+		mkdir -p $lib
+		
+		cd ../testBed/ #THIS WILL BE CHANGED
+		mkdir -p $lib
+		
+		#Now, make the distro directories in each one
+		while read -r -u 3 distro
+		do
+			#Start in the packages/ directory
+			cd $lib
+			mkdir -p $distro						
+			
+			#Go to versions/
+			cd ../../versions/$lib
+			mkdir -p $distro		
+	
+			cd $distro
+			
+			echo "1.0" > version.txt
+			
+			#Go to imp/
+			cd ../../../helpers/imp/$lib
+			mkdir -p $distro
+			
+			#Go back to packages/ && repeat
+			cd ../../../testBed/  #THIS WILL BE CHANGED		
+	
+		done 3< ../helpers/distros.txt
+		
+		cd ../helpers/
+	
+	done < libs.txt
+	
+	echo "Done."
 fi
 
 echo
-echo "Begin."
 
 #Version check
-. ./versChecker.sh libs.txt
+. ./versChecker.sh libs.txt distros.txt
 
 #Directory maker 
-. ./dirMaker.sh libs.txt
+#. ./dirMaker.sh libs.txt
 
 #Copy stage
 
-./copyer.sh libs.txt masterDir.txt #THIS NEEDS TO BE CHANGED
+#./copyer.sh libs.txt masterDir.txt #THIS NEEDS TO BE CHANGED
 
 #Debian Handler
