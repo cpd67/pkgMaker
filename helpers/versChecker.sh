@@ -51,7 +51,7 @@ do
 		
 		#Tell dirMaker.sh that this isn't the first time a package has been made
 		#for this library
-		echo "no" > "$lib"FirstTime.txt
+		echo "no" > "$lib"FirstUse.txt
 		
 		cd ../
 	else
@@ -98,7 +98,7 @@ do
 			echo "$versNum" > "$lib"OldVersion.txt
 			
 			#Tell the directory maker that this is first time use.
-			echo "yes" > "$lib"FirstTime.txt
+			echo "yes" > "$lib"FirstUse.txt
 			
 			cd ../
 		else

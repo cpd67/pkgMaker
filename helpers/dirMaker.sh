@@ -11,8 +11,8 @@ do
 	cd imp/
 	
 	#See if it's the first time use case...
-	firstTime=$(cat "$lib"FirstTime.txt)
-	if [ $firstTime = "yes" ]
+	firstUse=$(cat "$lib"FirstUse.txt)
+	if [ $firstUse = "yes" ]
 	then
 		#Yes.
 		cd ../
