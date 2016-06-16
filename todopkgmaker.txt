@@ -12,8 +12,12 @@ TO-DO pkgMaker
 
 * Still have to add the two loops for scripts. (lib -> distro).
 	+ Three for copyer.sh. (lib -> distro -> $lib-$newVersNum).
-
+	+ The distros loop in dirMaker.sh will create the distro specific directories (lib/distroName).
+		- Those contain the package directories.
+		- You will have to update the pathes in each file that goes into ~/testBed.
+			
 * Still have to make a cleanup script that deletes all of the old text files.
+	+ It will delete masterDir.txt after completion.
 
 * Things to keep in mind:
 	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).

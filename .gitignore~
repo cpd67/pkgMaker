@@ -1,0 +1,7 @@
+#Ignore backups, please!
+*~ 
+
+#Ignore object files
+*.o
+
+versioner/versions

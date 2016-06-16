@@ -32,4 +32,6 @@ echo "Begin."
 
 #Copy stage
 
+./copyer.sh libs.txt masterDir.txt #THIS NEEDS TO BE CHANGED
+
 #Debian Handler

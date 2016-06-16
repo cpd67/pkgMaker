@@ -10,11 +10,12 @@ while read -r lib
 do
 	cd imp/
 	
-	#See if it's the first time use case...
+	#See if it's the first time use case for this library...
 	firstUse=$(cat "$lib"FirstUse.txt)
 	if [ $firstUse = "yes" ]
 	then
 		#Yes.
+		#We just have to make the directory then.
 		cd ../
 		
 		#Read the directory from the text file
@@ -32,7 +33,10 @@ do
 		else
 			mkdir -p $dirName
 		fi
-		
+
+		cd ../helpers/
+		echo "$dirName" >> masterDir.txt
+
 	else
 		#Not the first time use case. Continue as planned...	
 		cd ../
@@ -83,11 +87,13 @@ do
 			#Do we have to make the new directory?
 			else
 				mkdir -p "$dirName" #Should still be within the correct directory
+				cd ../helpers/
+				#Append the new version number directory to a text file.
+				echo "$dirName" >> masterDir.txt
 				count=0
 			fi
 		done 4< "$lib"Directories.txt
 	fi
-	cd ../helpers/
 done < $1
 
 #./copyer.sh
