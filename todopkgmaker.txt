@@ -2,12 +2,37 @@ TO-DO pkgMaker
 ---------------
 
 * Still have to do error-handling for the infoGetter.
+ 
+* Still have to do copyer.sh and debHandler.sh scripts.
 
-* Still have to check if the version number is 1.0 and the user makes a bug fix (because then it would be 1.0.1) (DONE)
+* Still have to do error-handling overall.
+	+ What happens when the user decides to run the pkgMaker.sh script somewhere else (nowhere near the helpers folder)?
+	+ What happens when the user mucks up the directories and scatters them all around?
+	+ What happens when a file does not exist?
+
+* Still have to add the two loops for scripts. (lib -> distro).
+	+ Three for copyer.sh. (lib -> distro -> $lib-$newVersNum).
+
+* Still have to make a cleanup script that deletes all of the old text files.
+
+* Things to keep in mind:
+	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).
+	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
+	+ If you only have to change stuff inside of the debian folder, you DO NOT need pkgManager. You simply have to make your changes, update the deb number,
+	  and re-upload.
+
+------------------
+| Finished items |
+------------------
+
+* Added a check for the version number.
+	+ When it is 1.0 and the user makes a bug fix, 1.0 -> 1.0.1.
 	+ FIXED. 
 	+ I checked in the infoGetter.sh and versChecker.sh scripts using regular expressions.
 
-* Still have to modify dirMaker.sh. (DONE)
+* Changed naming from "*FirstTime.txt" to "*FirstUse.txt" (and references to it in versChecker.sh).
+
+* Modified dirMaker.sh.
 	+ What happens when the user just runs the pkgMaker.sh script without having the tsgl and glfw folders made? (Clean workspace problem).
 		- That will mess up the version getting stage and directory maker stage. 
 		- The old version number will be the new version number at that point.
@@ -19,19 +44,5 @@ TO-DO pkgMaker
 			  the check will catch that, clean up (remove the oldVersion.txt file), and scold the user.
 		- dirMaker.sh will check imp/ to see if packages have been made. versChecker.sh will put a file that tells dirMaker.sh whether or not that is the case.
 	+ FIXED.
- 
-* Still have to do copyer.sh and debHandler.sh scripts.
 
-* Still have to do error-handling overall.
-	+ What happens when the user decides to run the pkgMaker.sh script somewhere else (nowhere near the helpers folder)?
-	+ What happens when the user mucks up the directories and scatters them all around?
-	+ What happens when a file does not exist?
 
-* Things to keep in mind:
-	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).
-	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
-	+ If you only have to change stuff inside of the debian folder, you DO NOT need pkgManager. You simply have to make your changes, update the deb number,
-	  and re-upload.
-* Still have to make a cleanup script that deletes all of the old text files.
-
-* Change naming from "*FirstTime.txt" to "*FirstUse.txt" (and references to it in versChecker.sh).
