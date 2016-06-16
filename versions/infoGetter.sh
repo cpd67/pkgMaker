@@ -69,15 +69,15 @@ cd versioner/
 #https://www.shell-tips.com/2006/11/04/using-bash-wildcards/
 #Determine if the user made a mistake with the version number
 #Or if the version number needs to be expanded
-if [[ $oldVersNum == ? ]] && (($minorNum == 1)) || [[ $oldVersNum == ? ]] # 1
+if [[ $oldVersNum == ? ]] || [[ $oldVersNum == ? ]] && (($minorNum == 1)) || [[ $oldVersNum == *.? ]] && (($patchNum == 1)) # 1 || 1.0
 then
-	oldVersNum=$oldVersNum".0"
+	oldNum=$oldVersNum".0"
 elif [[ $oldVersNum == *. ]] && (($minorNum == 1)) || [[ $oldVersNum == *. ]] # 1.
 then
-	oldVersNum=$oldVersNum"0"
+	oldNum=$oldVersNum"0"
 elif [[ $oldVersNum == *.*. ]] && (($patchNum == 1)) || [[ $oldVersNum == *.*. ]] # 1.0.
 then
-	oldVersNum=$oldVersNum"0"
+	oldNum=$oldVersNum"0"
 fi
 
 #If absolutely no changes have been made, we don't need to make a new package.
@@ -94,7 +94,7 @@ else
 
 	#http://stackoverflow.com/questions/21197207/returning-values-from-a-c-program-into-a-bash-script
 	#Store the printed value after execution in a variable
-	results=$(./version $majorNum $minorNum $patchNum $oldVersNum)
+	results=$(./version $majorNum $minorNum $patchNum $oldNum)
 	cd ../
 	
 	#Put the results in a text file for next stage...

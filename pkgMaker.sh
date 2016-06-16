@@ -71,7 +71,7 @@ echo
 . ./versChecker.sh libs.txt distros.txt
 
 #Directory maker 
-#. ./dirMaker.sh libs.txt
+. ./dirMaker.sh libs.txt distros.txt
 
 #Copy stage
 

@@ -2,15 +2,14 @@
 
 echo "Begin stage 1: Version checking."
 sleep 1
-echo
 
 #Determine if the user made any changes to the library
 
 #http://superuser.com/questions/421701/bash-reading-input-within-while-read-loop-doesnt-work
 #Get the passed library name	
-while read -r lib #For each library
+while read -r -u 3 lib #For each library
 do
-	while read -r -u 3 distro #For each distro version
+	while read -r -u 4 distro #For each distro version
 	do
 		cd imp/$lib/$distro/
 		
@@ -27,7 +26,7 @@ do
 			cd ../../../../versions/
 			
 			#Pass the old version number to infoGetter.
-			./infoGetter.sh $oldVersNum
+			. ./infoGetter.sh $oldVersNum
 			
 			#Get the results
 			newVersNum=$(cat newVersNum.txt)
@@ -47,16 +46,25 @@ do
 				echo "$newVersNum" > version.txt
 				cd ../../../helpers/imp/$lib/$distro
 				echo "$newVersNum" > oldVersion.txt
-				
+
+				#While you're there, create the directories.txt file
+				echo "$lib-$oldVersNum" > directories.txt
+				echo "$lib-$newVersNum" >> directories.txt
+
 				#This isn't the first time pkgMaker was used to make
 				#a package for this distro
 				echo "no" > firstUse.txt
 			fi
+
+			cd ../../../
+
 		else
 			#Yes.
+			echo
 			echo "Old version number not found for $distro in imp/$lib/$distro/."
 			echo "Getting version number from versions/ directory..."
-			
+			echo
+
 			#Go into the distro directory that's in the current lib
 			cd ../../../../versions/$lib/$distro
 			
@@ -107,9 +115,11 @@ do
 			fi
 		fi
 
-	done 3< $2
+	done 4< $2
 
-done < $1
+done 3< $1
 
 #End version checking stage
+echo "End stage 1."
+echo
 

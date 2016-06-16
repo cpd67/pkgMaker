@@ -13,7 +13,7 @@ TO-DO pkgMaker
 * Still have to add the two loops for scripts. (lib -> distro).
 	+ Scripts to do it for:
 		- versChecker.sh (COMPLETE)
-		- dirMaker.sh
+		- dirMaker.sh (COMPLETE)
 		- copyer.sh (three; lib -> distro -> $lib-$newVersNum)
 		- debHandler.sh
 	+ The distro loop in dirMaker.sh will create the distro specific directories (lib/distroName).
