@@ -18,7 +18,7 @@ TO-DO pkgMaker
 		- debHandler.sh
 	+ The distro loop in dirMaker.sh will create the distro specific directories (lib/distroName).
 		- Those contain the package directories.
-		- You will have to update the pathes in each file that goes into ~/testBed.
+		- You will have to update the paths in each file that goes into ~/pkgMaker/packages.
 			
 * Still have to make a cleanup script that deletes all of the old text files.
 	+ It will delete masterDir.txt after completion.
@@ -60,4 +60,5 @@ TO-DO pkgMaker
 		- dirMaker.sh will check imp/ to see if packages have been made. versChecker.sh will put a file that tells dirMaker.sh whether or not that is the case.
 	+ FIXED.
 
++ Uploaded the packages/ directory to GitHub; I guess GitHub will ignore empty directories...
 
