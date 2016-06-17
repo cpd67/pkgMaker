@@ -5,13 +5,11 @@ sleep 1
 
 count=0
 
-while read -r lib #For each library
+while read -r -u 3 lib #For each library
 do
-	while read -r -u 3 distro #For each distro
+	while read -r -u 4 distro #For each distro
 	do
 		cd imp/$lib/$distro
-		#Clear out the masterDirs.txt list
-		echo "" > masterDirs.txt
 
 		#Is it the first use case?
 		firstUse=$(cat firstUse.txt)
@@ -43,7 +41,7 @@ do
 				cd ../../../helpers/imp/$lib/$distro/
 			
 				#Tell copyer.sh the copying destination.
-				echo "$dirName" >> masterDirs.txt			
+				echo "$dirName" > copyDir.txt			
 			fi
 
 			#Get back in place for the next iteration	
@@ -122,7 +120,7 @@ do
 						mkdir -p "$dirName"
 						cd ../../../helpers/imp/$lib/$distro/
 						
-						echo "$dirName" >> masterDirs.txt
+						echo "$dirName" > copyDir.txt
 						count=0
 						
 						#Get back into position for the next distro
@@ -132,9 +130,9 @@ do
 			fi
 		fi
 		
-	done 3< $2
+	done 4< $2
 
-done < $1	
+done 3< $1	
 
 echo "End stage 2."
 echo

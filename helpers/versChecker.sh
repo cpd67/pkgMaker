@@ -46,8 +46,8 @@ do
 
 				cd ../../../packages/$lib/$distro/
 
-				#Tell dirMaker.sh that no changes have been made
-				echo "" > noChanges.txt
+				#Tell dirMaker.sh & copyer.sh that no changes have been made
+				echo "" > noChanges.txt && echo "" > ../../../helpers/imp/$lib/$distro/noChanges.txt
 				
 				cd ../../../helpers/imp/$lib/$distro
 				echo "$oldVersNum" > oldVersion.txt

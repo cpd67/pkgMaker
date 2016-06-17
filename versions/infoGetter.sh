@@ -18,11 +18,11 @@ read -r -p "Did you make any major changes to the library? (API changes, etc...)
 
 #http://stackoverflow.com/questions/10849297/compare-a-string-in-unix
 
-if [ $userInput = "y" -o $userInput = "yes" ]
+if [[ $userInput == y ]] || [[ $userInput == yes ]]
 then
 	echo "Major changes have been made."
 	majorNum=1
-elif [ $userInput = "n" -o $userInput = "no" ]
+elif [[ $userInput == n ]] || [[ $userInput == no ]]
 then
 	echo "No major changes have been made."
 	let noCount=noCount+1 #"Learning the bash shell" by Cameron Newham & Bill Rosenblatt, pg. 157
@@ -34,11 +34,11 @@ fi
 #Ask for minor changes
 read -r -p "Did you make any minor changes to the library? (new features, optimization, documentation, etc...) (y or n)" userInput
 
-if [ $userInput = "y" -o $userInput = "yes" ]
+if [[ $userInput == y ]] || [[ $userInput == yes ]]
 then
 	echo "Minor changes have been made."
 	minorNum=1
-elif [ $userInput = "n" -o $userInput = "no" ]
+elif [[ $userInput == n ]] || [[ $userInput == no ]]
 then
 	echo "No minor changes have been made."
 	let noCount=noCount+1
@@ -50,11 +50,11 @@ fi
 #Ask for bug fixes
 read -r -p "Did you fix any bugs? (y or n)" userInput
 
-if [ $userInput = "y" -o $userInput = "yes" ]
+if [[ $userInput == y ]] || [[ $userInput = yes ]]
 then
 	echo "Bug fixes have been made."
 	patchNum=1
-elif [ $userInput = "n" -o $userInput = "no" ]
+elif [[ $userInput = n ]] || [[ $userInput == no ]]
 then
 	echo "No bug fixes have been made."
 	let noCount=noCount+1

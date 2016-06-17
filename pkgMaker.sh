@@ -74,7 +74,6 @@ echo
 . ./dirMaker.sh libs.txt distros.txt
 
 #Copy stage
-
-#./copyer.sh libs.txt masterDir.txt #THIS NEEDS TO BE CHANGED
+. ./copyer.sh libs.txt distros.txt
 
 #Debian Handler
