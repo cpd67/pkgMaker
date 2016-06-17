@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Copying over files..."
+echo "Begin stage 3: Copying files."
 sleep 1
 
 #Iterate through the list of libraries
@@ -20,9 +20,9 @@ do
 			
 			make clean
 
-			cp -r * ../pkgMaker/testBed/$dirName #THIS WILL HAVE TO BE CHANGED
+			cp -r * ../pkgMaker/packages/$dirName 
 			
-			cd ../pkgMaker/testBed/ #THIS WILL HAVE TO BE CHANGED
+			cd ../pkgMaker/packages/
 			
 			#Make the upstream tarball
 			echo "Making upstream tarball for: $lib ..."

@@ -26,16 +26,36 @@ do
 			cd ../../../../versions/
 			
 			#Pass the old version number to infoGetter.
-			. ./infoGetter.sh $oldVersNum
+			./infoGetter.sh $oldVersNum
 			
 			#Get the results
 			newVersNum=$(cat newVersNum.txt)
+			
+			echo "$newVersNum"
 
 			#Check if we have to move onto the next library (no changes registered)...
-			if [ $newVersNum = "NEXT" ]
+			if [[ $newVersNum == NEXT ]]
 			then
 				#Yes.
 				echo "Moving onto the next library..."
+				rm newVersNum.txt
+
+				cd $lib/$distro
+				
+				echo "$oldVersNum" > version.txt
+
+				cd ../../../packages/$lib/$distro/
+
+				#Tell dirMaker.sh that no changes have been made
+				echo "" > noChanges.txt
+				
+				cd ../../../helpers/imp/$lib/$distro
+				echo "$oldVersNum" > oldVersion.txt
+				
+				echo "$lib-$oldVersNum" > directories.txt
+				echo "no" > firstUse.txt
+				
+				cd ../../../
 			else
 				#No.
 				echo "New version number: $newVersNum."
@@ -54,9 +74,9 @@ do
 				#This isn't the first time pkgMaker was used to make
 				#a package for this distro
 				echo "no" > firstUse.txt
+				
+				cd ../../../
 			fi
-
-			cd ../../../
 
 		else
 			#Yes.

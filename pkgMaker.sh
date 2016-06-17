@@ -31,7 +31,7 @@ else
 		cd ../../versions/	
 		mkdir -p $lib
 		
-		cd ../testBed/ #THIS WILL BE CHANGED
+		cd ../packages/
 		mkdir -p $lib
 		
 		#Now, make the distro directories in each one
@@ -54,7 +54,7 @@ else
 			mkdir -p $distro
 			
 			#Go back to packages/ && repeat
-			cd ../../../testBed/  #THIS WILL BE CHANGED		
+			cd ../../../packages/		
 	
 		done 3< ../helpers/distros.txt
 		
