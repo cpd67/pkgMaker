@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Begin stage 2: Directory making."
+echo "Begin stage 2: directory making."
 sleep 1
 
 count=0
@@ -134,5 +134,6 @@ do
 
 done 3< $1	
 
+#End directory making stage
 echo "End stage 2."
 echo

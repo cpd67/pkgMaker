@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Begin stage 1: Version checking."
+echo "Begin stage 1: version checking."
 sleep 1
 
 #Determine if the user made any changes to the library
@@ -142,4 +142,3 @@ done 3< $1
 #End version checking stage
 echo "End stage 1."
 echo
-

@@ -20,7 +20,15 @@ else
 
 	#Make the important directory for the version checking and directory making stages.
 	mkdir -p imp
+
+	cd ../
+
+	#Copy the debian files over to imp/
+	cp -r debianFiles/ helpers/imp
 	
+	#Get back into helpers/
+	cd helpers/
+
 	#Packaging prelims: creating directories for each distro inside of each lib directory.
 	while read -r lib
 	do
@@ -47,7 +55,7 @@ else
 	
 			cd $distro
 			
-			echo "1.0" > version.txt
+			echo "1.0" > version.txt #THIS WILL BE CHANGED
 			
 			#Go to imp/
 			cd ../../../helpers/imp/$lib
@@ -77,3 +85,4 @@ echo
 . ./copyer.sh libs.txt distros.txt
 
 #Debian Handler
+. ./debHandler.sh libs.txt distros.txt

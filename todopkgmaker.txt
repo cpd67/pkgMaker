@@ -23,6 +23,17 @@ TO-DO pkgMaker
 * Still have to make a cleanup script that deletes all of the old text files.
 	+ It will delete masterDir.txt after completion.
 
+* Still need current version number files for each library.
+	* TSGL, GLFW
+
+* Still have to make docs explaining where things should go.
+	* Users *MUST* have the library source code files in a directory inside of a 'workspace' directory.
+	* The library directory name *MUST* match the name in the libs.txt file.
+
+* Still have to make debian file templates 
+	* debianFiles/ , changelog, control, copyright, ...
+	* Figure out a way to "futureproof" the creation of those things. (In the event that a new dependency is added to TSGL and a new library package has to be made.)
+ 
 * Things to keep in mind:
 	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).
 	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
