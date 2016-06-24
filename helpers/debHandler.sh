@@ -10,7 +10,6 @@ do
 	do
 		cd imp/$lib/$distro
 
-		#Was a 
 		if [ -e debDirCreated.txt ]
 		then
 			read -r debCheck < debDirCreated.txt

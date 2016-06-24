@@ -6,6 +6,17 @@
 echo "Initializing Package Maker..."
 sleep 1
 
+#The default is to remake all Debian packages when no arguments are passed.
+
+#Check command-line arguments
+if [ $# -gt 0 ]
+then
+	echo "Args passed!"
+	#Parse the arguments
+else
+	echo "No Args passed!"
+fi
+
 cd helpers/
 
 #Have I already been used?
@@ -24,7 +35,7 @@ else
 	cd ../
 
 	#Copy the debian files over to imp/
-	cp -r debianFiles/ helpers/imp
+	cp -r debFiles/ helpers/imp
 	
 	#Get back into helpers/
 	cd helpers/
