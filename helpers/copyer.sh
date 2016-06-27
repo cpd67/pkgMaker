@@ -3,9 +3,10 @@
 echo "Begin stage 3: copying files."
 sleep 1
 
-#You'll have to copy over the files from the first distro over to the successive ones.
+# You'll have to copy over the files from the first distro over to the successive ones.
 # i.e. tsgl-1.6.2 & tsgl_1.6.2.orig.tar.gz from trusty to xenial, distro3, distro4, etc...
-#That prevents the rejection of packages for different distros.
+# That prevents the rejection of packages for different distros. 
+# After copying the files over into the first distro, copy over the directory and upstream tarball to the sucessive distro folder.
 
 #Iterate through the list of libraries
 while read -r -u 3 lib 

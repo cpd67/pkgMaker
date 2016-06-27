@@ -1,0 +1,16 @@
+Source: glfw
+Maintainer: Chris Dilley <codemonkey941@gmail.com>
+Section: libs
+Priority: optional
+Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 9), libx11-6, libc6, libxrandr2, libxi6, libxxf86vm1, libgl1-mesa-glx, libxcb1, libxext6, libxrender1, libglapi-mesa, libxdamage1, 
+		libxfixes3, libx11-xcb1, libxcb-glx0, libdrm2, libxau6, libxdmcp6, libglfw-dev, cmake, xorg-dev, libxrandr-dev, libxi-dev, x11proto-xf86vidmode-dev, 
+		libglu1-mesa-dev, libglew-dev, doxygen
+
+Package: glfw
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Compiled from source (https://www.github.com/glfw/glfw.git), needed in order to compile the TSGL library.
+	     I did not write any of the code associated with the GLFW library. I did, however, alter it slightly to make the
+	     shared libraries. I altered the CMakeLists.txt file to build them by setting the BUILD_SHARED_LIBS option to ON.
+	     I also packaged it up as a Debian package. (See the full changelog file for more information.)

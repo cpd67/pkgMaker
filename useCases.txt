@@ -1,0 +1,23 @@
+1). Creating Debian packages.
+	* As an Ubuntu user, I should be able to make Debian packages.
+2). Creating RPM packages.
+	* As a RedHat user, I should be able to make RPM packages.
+3). Adding a new distro. (Which lib?) (Ubuntu only)
+	* As an Ubuntu user, I want to make new packages for new distros.
+4). Adding a new library (WORST-CASE; If a new dependency is added to TSGL and a package is needed).
+	* As a user, I want to add a new library to TSGL.
+5). Remaking one package vs. Remaking ALL packages.
+	* One package: As a user, I should be able to remake one package.
+	* ALL packages: As a user, I should be able to remake ALL packages.
+6). First time setup.
+	* As a user, setting up should be as painless as possible. 
+
+./pkgMaker (Could be first time setup OR Debian packages).
+./pkgMaker --add-distro <distro-name> 
+./pkgMaker --rpm 
+./pkgMaker --single <lib-name>
+./pkgMaker --all 
+./pkgMaker --remake (Default is remake all Debian packages)
+./pkgMaker --remake --single <lib-name>
+./pkgMaker --remake --rpm
+./pkgMaker --remake --rpm --single <lib-name> 

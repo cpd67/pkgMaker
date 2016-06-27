@@ -2,8 +2,6 @@ TO-DO pkgMaker
 ---------------
 
 * Still have to do error-handling for the infoGetter.
- 
-* Still have to do copyer.sh and debHandler.sh scripts.
 
 * Still have to do error-handling overall.
 	+ What happens when the user decides to run the pkgMaker.sh script somewhere else (nowhere near the helpers folder)?
@@ -14,12 +12,12 @@ TO-DO pkgMaker
 	+ Scripts to do it for:
 		- versChecker.sh (COMPLETE)
 		- dirMaker.sh (COMPLETE)
-		- copyer.sh (three; lib -> distro -> $lib-$newVersNum)
-		- debHandler.sh
+		- copyer.sh (three; lib -> distro -> $lib-$newVersNum) (COMPLETE).
+		- debHandler.sh (COMPLETE).
 	+ The distro loop in dirMaker.sh will create the distro specific directories (lib/distroName).
 		- Those contain the package directories.
 		- You will have to update the paths in each file that goes into ~/pkgMaker/packages.
-			
+	
 * Still have to make a cleanup script that deletes all of the old text files.
 	+ It will delete masterDir.txt after completion.
 
@@ -33,7 +31,17 @@ TO-DO pkgMaker
 * Still have to make debian file templates 
 	* debianFiles/ , changelog, control, copyright, ...
 	* Figure out a way to "futureproof" the creation of those things. (In the event that a new dependency is added to TSGL and a new library package has to be made.)
- 
+ 	* SOLVED: Create default templates for the "necessary" files:
+		+ changelog
+		+ control
+		+ copyright
+		+ compat
+		+ rules
+		+ source/format
+		+ preinst, postinst
+		+ OR...Just copy over the debian folder to the tsgl and GLFW new distro folder and have the user edit them. 
+		+ Tell user to use dch -i to edit the changelog file after they are finished!
+
 * Things to keep in mind:
 	+ Distro-specific version updates (if the user updates the code that takes advantage of something that Xenial has and Trusty doesn't, for example).
 	+ Any change made to the source code must be reflected in the packages for ALL distros (except in the case above).
@@ -71,5 +79,15 @@ TO-DO pkgMaker
 		- dirMaker.sh will check imp/ to see if packages have been made. versChecker.sh will put a file that tells dirMaker.sh whether or not that is the case.
 	+ FIXED.
 
-+ Uploaded the packages/ directory to GitHub; I guess GitHub will ignore empty directories...
++ Uploaded the packages/ directory to GitHub. I guess GitHub will ignore empty directories...
+
+* Added the two loops for scripts. (lib -> distro).
+	+ Scripts to do it for:
+		- versChecker.sh (COMPLETE)
+		- dirMaker.sh (COMPLETE)
+		- copyer.sh (three; lib -> distro -> $lib-$newVersNum) (COMPLETE).
+		- debHandler.sh (COMPLETE).
+	+ The distro loop in dirMaker.sh will create the distro specific directories (lib/distroName).
+		- Those contain the package directories.
+		- You will have to update the paths in each file that goes into ~/pkgMaker/packages.
 

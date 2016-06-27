@@ -6,21 +6,55 @@
 echo "Initializing Package Maker..."
 sleep 1
 
+#Check if we're in the pkgMaker directory.
+workingDir=$(pwd)
+if [[ ! $workingDir == ~/pkgMaker ]]
+then
+	#We *MUST* be in that directory in order to work correctly!
+	echo
+	echo "*** Please put me back in the pkgMaker directory!"
+	echo	
+	echo "Abort."
+	exit 1
+fi
+
 #The default is to remake all Debian packages when no arguments are passed.
+#Need to add a distro? ./pkgMaker --add-distro <distro-name> 
+#How about a lib? (Worst-case) ./pkgMaker --add-lib <lib-name>
 
 #Check command-line arguments
 if [ $# -gt 0 ]
 then
 	echo "Args passed!"
+
+	cd helpers/ 
+	
+	#First, check if it's the first time use case.	
+	if [ ! -d imp/ ]
+	then
+		echo 
+		echo "*** I haven't been used before!"
+		echo "Please, just use me without any command-line arguments!"
+		echo "Like this: ./pkgMaker"
+		echo
+		
+		echo "Abort."
+		exit 1
+	fi
+
+	cd ../
+
 	#Parse the arguments
+	echo "Parsing args..."
+		
 else
-	echo "No Args passed!"
+	echo "No args passed!"
 fi
 
 cd helpers/
 
 #Have I already been used?
-if [ -d imp ]
+if [ -d imp/ ]
 then
 	#Yes.
 	echo "Done. Remaking packages..."
@@ -31,14 +65,8 @@ else
 
 	#Make the important directory for the version checking and directory making stages.
 	mkdir -p imp
-
-	cd ../
-
-	#Copy the debian files over to imp/
-	cp -r debFiles/ helpers/imp
 	
-	#Get back into helpers/
-	cd helpers/
+	cd ../
 
 	#Packaging prelims: creating directories for each distro inside of each lib directory.
 	while read -r lib
