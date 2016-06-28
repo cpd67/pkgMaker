@@ -3,10 +3,15 @@
 echo "Begin stage 3: copying files."
 sleep 1
 
+firstCpy=0
+
 # You'll have to copy over the files from the first distro over to the successive ones.
 # i.e. tsgl-1.6.2 & tsgl_1.6.2.orig.tar.gz from trusty to xenial, distro3, distro4, etc...
 # That prevents the rejection of packages for different distros. 
 # After copying the files over into the first distro, copy over the directory and upstream tarball to the sucessive distro folder.
+
+#Could have a firstCopy.txt file in each lib directory that tells the copyer.sh script when it's the first time copying something.
+
 
 #Iterate through the list of libraries
 while read -r -u 3 lib 
@@ -15,6 +20,17 @@ do
 	#Iterate through the list of distros
 	while read -r -u 4 distro 
 	do
+		cd imp/$lib/
+	
+		if [ -e firstCopyDone.txt ]
+		then
+			echo "Need to copy file from first distro over to $distro!"
+			cd ../../
+		else
+			echo "First copy!"
+			cd ../../
+		fi
+		
 		cd imp/$lib/$distro
 		
 		#If we haven't changed anything for this distro...
@@ -29,7 +45,7 @@ do
 			#We'll have to copy files over.
 			#Get the copy location from the text file
 			read -r dirName < copyDir.txt
-		
+			
 			#Special case for TSGL
 			if [[ $lib == tsgl ]]
 			then
@@ -81,8 +97,18 @@ do
 					cd ../../../helpers/imp/tsgl/$distro
 					echo "yes" > debDirCreated.txt
 				fi
-	
-				cd ../../../
+				
+				if [ $firstCpy == 0 ]
+				then
+					#Go up to library directory
+					cd ../
+					echo "done" > firstCopyDone.txt
+					firstCpy=1
+				else
+					cd ../
+				fi
+				
+				cd ../../
 				
 			else #Generic copy
 				

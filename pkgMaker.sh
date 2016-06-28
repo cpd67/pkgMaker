@@ -8,7 +8,7 @@ sleep 1
 
 #Check if we're in the pkgMaker directory.
 workingDir=$(pwd)
-if [[ ! $workingDir == ~/pkgMaker ]]
+if [[ ! $workingDir == ~/workspace/pkgMaker ]]
 then
 	#We *MUST* be in that directory in order to work correctly!
 	echo
@@ -65,8 +65,6 @@ else
 
 	#Make the important directory for the version checking and directory making stages.
 	mkdir -p imp
-	
-	cd ../
 
 	#Packaging prelims: creating directories for each distro inside of each lib directory.
 	while read -r lib
